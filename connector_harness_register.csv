@@ -1,0 +1,16 @@
+ID,From,To,Function,Photo/label evidence,Must verify,Status
+P01,Battery/BMS protected output,Main fuse,Pack DC,UNKNOWN,"BMS topology, max V, fuse placement and rating",BLOCKED
+P02,Main fuse,Anti-spark switch,High-current DC,UNKNOWN,"DC voltage/current, isolation, precharge, polarity",BLOCKED
+P03,Anti-spark switch,DC distribution / VESC,High-current DC,UNKNOWN,Switch IN/OUT and rated connectors; verify VESC input,BLOCKED
+P04,DC distribution,DC/DC branch fuse,High-voltage DC branch,UNKNOWN,Separate branch protection and return path,BLOCKED
+P05,DC/DC branch fuse,DROK input,11–90 V converter input,Red IN+ / black IN- per label/photo,Confirm actual lead identification and polarity with meter,REVIEW
+P06,DROK output,ESP32 dev board,5 V / ground,Yellow OUT+ / black OUT- per label/photo,Confirm 5 V at load and approved ESP32 power input,REVIEW
+P07,VESC phase terminals,Motor phases,U/V/W,PCB terminals A/B/C visible,Match phase identities with motor documentation,BLOCKED
+P08,Motor Hall/temp,VESC SENSE,Hall / temperature,UNKNOWN,"Pinout, voltage, sensor compatibility",BLOCKED
+S01,VESC TX,ESP32 UART RX GPIO16 (proposal),UART telemetry,UNKNOWN,VESC connector TX level <=3.3 V or conditioning,BLOCKED
+S02,ESP32 UART TX GPIO17 (proposal),VESC RX,UART commands,UNKNOWN,"Pinout, baud, timeout, logic levels",BLOCKED
+S03,ESP32 GPIO21/22 (proposal),OLED SDA/SCL,I2C,UNKNOWN,"OLED I2C address, 5 V pullups, controller",BLOCKED
+S04,PAS Hall channel,ESP32 GPIO32 (proposal),Cadence pulse,UNKNOWN,"Supply, open drain/push pull, pulse count, level shift",BLOCKED
+S05,Brake cutoff,ESP32 GPIO33 (proposal),Fail-safe brake input,NOT INSTALLED / UNKNOWN,Open-wire fault must disable assist; validate,BLOCKED
+S06,Wheel-speed source,ESP32 / VESC telemetry,Speed measurement,UNKNOWN,Independent sensor or calibrated eRPM gearing,BLOCKED
+S07,BMS telemetry or current sensor,ESP32,SOC,UNKNOWN,Documented protocol or calibrated coulomb counter,BLOCKED
