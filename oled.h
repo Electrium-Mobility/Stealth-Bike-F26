@@ -1,12 +1,14 @@
+#ifndef OLED_H
+#define OLED_H
 #include <Wire.h>
 #include <U8g2lib.h>
 #include <stdint.h>
 
 #define FONT_USED      u8x8_font_pxplusibmcgathin_f
 
-void showBatteryLevel(uint8_t percent, uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2);
-void ShowBatteryPercent(uint8_t percent, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2);
-void iShowSpeed(uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2);
+void showBatteryLevel(uint8_t percent, uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2);
+void ShowBatteryPercent(uint8_t percent, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2);
+void iShowSpeed(uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2);
 
 
 
@@ -34,7 +36,4 @@ void iShowSpeed(uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2);
 // void ShowBatteryPercent(uint8_t percent);
 // void iShowSpeed(uint8_t speed);
 // void OLEDDisplay(void);
-
-
-
-
+#endif

@@ -2,14 +2,13 @@
 
 
 // displays the battery level on the display
-void showBatteryLevel(uint8_t percent, uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2)
+void showBatteryLevel(uint8_t percent, uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2)
 {
     uint8_t width;
 
     if (percent > 100)
         percent = 100;
 
-    u8g2.clearBuffer();
     u8g2.drawHLine(52,1,11);
     u8g2.drawHLine(52,7,11);
     u8g2.drawHLine(52,2,1);
@@ -126,49 +125,36 @@ void showBatteryLevel(uint8_t percent, uint8_t speed, U8G2_SSD1306_128X64_NONAME
     }
   u8g2.setFont(u8g2_font_squeezed_r6_tr);
   u8g2.drawStr(24,98, "KM/H+");
-
-    u8g2.sendBuffer();
 }
 
 // displays the battery percentage on the display
-void ShowBatteryPercent(uint8_t percent, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2){
+void ShowBatteryPercent(uint8_t percent, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2){
   char cstr[16];
   itoa(percent, cstr, 10);
-  u8g2.setFont(u8g2_font_torussansbold8_8r);
- do {
-    u8g2.setFont(u8g2_font_6x10_mr);
-    if(percent == 100){
-      u8g2.drawStr(28,8, cstr);
-    }
-    else if (percent <=99 && percent >=10){
-      u8g2.drawStr(32,8, cstr);
-    }
-
-    else if (percent <= 9){
-      u8g2.drawStr(38,8, cstr);
-    }
-    u8g2.drawStr(45,8, "%");
-
- }while ( u8g2.nextPage() );
-  delay(1);
+  u8g2.setFont(u8g2_font_6x10_mr);
+  if(percent == 100){
+    u8g2.drawStr(28,8, cstr);
+  }
+  else if (percent <=99 && percent >=10){
+    u8g2.drawStr(32,8, cstr);
+  }
+  else if (percent <= 9){
+    u8g2.drawStr(38,8, cstr);
+  }
+  u8g2.drawStr(45,8, "%");
 }
 
 // displays the speed on the display
-void iShowSpeed(uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2){
+void iShowSpeed(uint8_t speed, U8G2_SSD1306_128X64_NONAME_F_HW_I2C &u8g2){
   char cstr[16];
   itoa(speed, cstr, 10);
   u8g2.setFont(u8g2_font_crox3c_tn);
- do {
-    u8g2.setFont(u8g2_font_crox3c_tn);
-    if(speed<10)
-  {
-    u8g2.drawStr(26,89, cstr);  
+  if(speed<10){
+    u8g2.drawStr(26,89, cstr);
   }
   else{
     u8g2.drawStr(20,89, cstr);
-      } 
- }while ( u8g2.nextPage() );
-  delay(1);
+  }
 }
 /*
 void displayKPH(){
