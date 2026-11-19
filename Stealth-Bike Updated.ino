@@ -48,6 +48,7 @@ void loop() {
   if ( vesc.getVescValues() ) {
 
     // CONFIRM 23000 DIVISION -> intentional?
+    // Potentially divided among 23 pole pairs, 1000 for m -> km 
     speed = (uint8_t)((vesc.data.rpm) * WHEEL_CIRCUMFERENCE * 60/23000); // calculate speed based on rpm
     percent = (uint8_t)(((vesc.data.inpVoltage) - 36 )/ (MAX_VOLTAGE - 36) * 100); // calculate battery percent based on voltage
   }
