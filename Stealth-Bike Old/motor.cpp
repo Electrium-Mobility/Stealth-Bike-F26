@@ -19,9 +19,9 @@ float inputMap(uint8_t rpm, uint8_t rpm_MAX, uint8_t rpm_START, float current_MA
 float throttleFilter(float &prev, float curr){
   // adjuts current value if the jump from the previous value is non-negligibly large (in either direction)
   if ((curr-prev) > POSITIVE_THRESHOLD){
-    curr += POSITIVE_THRESHOLD;
+    curr = prev + POSITIVE_THRESHOLD;
   } else if ((prev-curr) > NEGATIVE_THRESHOLD){
-    curr -= NEGATIVE_THRESHOLD;
+    curr = prev - NEGATIVE_THRESHOLD;
   }
 
   // adjusts current value if it is out of range (0 to 17)
@@ -45,6 +45,7 @@ int checkForRotation(uint8_t *readingArray, uint8_t &status, uint8_t counter, ui
       sum += readingArray[i];
     }
 
+    // 4 readings to check that all 4 sensors read that the wheel rotates
     if ((sum == 0 && status == 0) || (sum == 4 && status == 1)){ // If we are looking for all 0s and get 0s OR if we are looking for all 1s and get 1s
       status ^= 1;
       finalReadingArray[finalCounter] = 1;
